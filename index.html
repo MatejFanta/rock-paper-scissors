@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Rock, Paper, Scissors</title>
+</head>
+<body>
+  <script>
+
+  function computerSelection() {
+    const choices = ['rock', 'paper', 'scissors'];
+    const randomIndex = Math.floor(Math.random() * choices.length);
+    return choices[randomIndex];
+}
+console.log(computerSelection()); 
+
+function playerSelection(input) {
+  const choice = input.toLowerCase();
+  if (choice === "rock" || choice === "paper" || choice === "scissors") {
+    return choice;
+  } else {
+    return "Invalid selection, please choose Rock, Paper or Scissors.";
+  }
+}
+
+function playRound(playerSelection, computerSelection){
+  if ( playerSelection===computerSelection ) {
+  return "Tie"; 
+} else if (
+(playerSelection=== "rock" && computerSelection === "scissors" )||
+(playerSelection=== "scissors" && computerSelection === "paper" )||
+(playerSelection=== "paper" && computerSelection === "rock" )
+) {
+return "You win";
+} else {
+  return "You lose";
+}
+}
+const playerChoice = playerSelection("");
+const computerChoice = computerSelection();
+console.log("Player chose: " + playerChoice);
+console.log("Computer chose: " + computerChoice);
+console.log(playRound(playerChoice, computerChoice));
+
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+    while (playerScore < 5 && computerScore < 5) {
+        const playerChoice = playerSelection(prompt("Please select Rock, Paper, or Scissors: "));
+        if (playerChoice === "Invalid selection, please choose Rock, Paper or Scissors.") {
+            console.log("Invalid choice, please try again.");
+            continue;
+        }
+        const computerChoice = computerSelection();
+        console.log("Player chose: " + playerChoice);
+        console.log("Computer chose: " + computerChoice);
+        const roundResult = playRound(playerChoice, computerChoice);
+        if (roundResult === "You win") {
+            playerScore++;
+        } else if (roundResult === "You lose") {
+            computerScore++;
+        }
+        console.log("Player score: " + playerScore);
+        console.log("Computer score: " + computerScore);
+    }
+    if (playerScore === 5) {
+        alert("Player wins the game!");
+    } else {
+      alert ("Computer wins the game!");
+    }
+}
+
+
+game();
+ 
+ 
+ </script>
+ 
+ 
+</body>
+</html>
